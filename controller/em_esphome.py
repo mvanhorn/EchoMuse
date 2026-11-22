@@ -77,6 +77,7 @@ import numpy as np
 
 from zeroconf.asyncio import AsyncZeroconf
 from zeroconf import ServiceInfo
+from em_mdns import service_target
 
 import em_boards
 import em_state
@@ -3151,7 +3152,7 @@ def _make_device_mdns_info(device_id: str, label: str, port: int,
             "project_name": f"EchoMuse.{device_model(device_id)}",
             "project_version": ESPHOME_PROJECT_VERSION,
         },
-        server=f"{svc_name}.local.",
+        server=service_target(svc_name),
     )
 
 

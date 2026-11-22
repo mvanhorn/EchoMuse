@@ -71,6 +71,7 @@ import numpy as np
 from aiohttp import web
 from zeroconf.asyncio import AsyncZeroconf
 from zeroconf import ServiceInfo
+from em_mdns import service_target
 import websockets
 from websockets.asyncio.server import ServerConnection as WebSocketServerProtocol
 
@@ -6142,7 +6143,7 @@ def _make_mdns_info(tls_active: bool) -> ServiceInfo:
         addresses=[socket.inet_aton(SERVER_IP)],
         port=SERVER_PORT,
         properties=props,
-        server=f"{MDNS_NAME}.local.",
+        server=service_target(MDNS_NAME),
     )
 
 

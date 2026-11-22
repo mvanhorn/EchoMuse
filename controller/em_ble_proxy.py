@@ -58,6 +58,7 @@ import logging
 from typing import Awaitable, Callable, Optional
 
 from zeroconf import ServiceInfo
+from em_mdns import service_target
 
 import em_db as db
 from esphome.satellite_server import SatelliteServerProtocol, serve, _HANDLED
@@ -367,7 +368,7 @@ def _make_mdns_info(device_id: str, label: str, port: int,
             "project_name": f"EchoMuse.{_device_model(device_id)}",
             "project_version": _project_version(),
         },
-        server=f"{svc_name}.local.",
+        server=service_target(svc_name),
     )
 
 
